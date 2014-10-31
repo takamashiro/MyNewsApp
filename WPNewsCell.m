@@ -50,11 +50,11 @@
 - (void)setContent:(News *)info
 {
   
-    //[self.pic sd_setImageWithURL:[NSURL URLWithString:info.pic]];
-    //[self.pic sd_setImageWithURL:[NSURL URLWithString:@"http://www.wupinnews.com/uploads/allimg/140911/0013542020-0-lp.jpg"]];
-    [self.newspic sd_setImageWithURL:[NSURL URLWithString:((NSDictionary*)info)[@"pic"]]];
-    self.newstitle.text = ((NSDictionary*)info)[@"title"];
-    self.newssummary.text =((NSDictionary*)info)[@"summary"];
+    
+        [self.newspic sd_setImageWithURL:[NSURL URLWithString:((NSDictionary*)info)[@"pic"]]];
+        self.newstitle.text = ((NSDictionary*)info)[@"title"];
+        self.newssummary.text =((NSDictionary*)info)[@"summary"];
+ 
 }
 
 @end

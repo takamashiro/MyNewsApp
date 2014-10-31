@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "News.h"
 #import "WPNewsCell.h"
 
-@interface NewsListViewView : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface NewsListViewView : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableViewList;
 

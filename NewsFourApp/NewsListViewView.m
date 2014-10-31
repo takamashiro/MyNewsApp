@@ -29,7 +29,7 @@
     [self.view addSubview:self.tableViewList];
     
     NSBundle *bundle = [NSBundle mainBundle];
-    NSString *plistPath = [bundle pathForResource:@"demoData"
+    NSString *plistPath = [bundle pathForResource:@"demoDataIT"
                                            ofType:@"plist"];
     
     //[self.tableViewList registerClass:[WPNewsCell class] forCellReuseIdentifier:@"cell"];
@@ -44,7 +44,7 @@
 
 - (void)viewDidCurrentView
 {
-    NSLog(@"加载为当前视图 = %@",@"NSDefaultCenter");
+    NSLog(@"加载为当前视图 = %@",self.view);
 }
 
 #pragma mark -UITableViewDataSource & UITableDelegate
@@ -58,27 +58,37 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WPNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell)
-    {
-        cell = [[WPNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-//    if (!cell)
-//    {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-//    }
-    //news n = [news objectAtIndex:[indexPath row];
     NSUInteger row = [indexPath row];
-    News *news= [demoData objectAtIndex:row];
-    //NSDictionary *rowDict = [demoData objectAtIndex:row];
-    [cell setContent:news];
+    if(row == 0)
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (!cell)
+        {
+            cell = [[UITableViewCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        return cell;
+    }
+    else
+    {
+        WPNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"wpcell"];
+        if (!cell)
+        {
+        cell = [[WPNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"wpcell"];
+        }
 
-    return cell;
+        NSInteger index = row - 1;
+        News *news= [demoData objectAtIndex:index]; //NSDictionary *rowDict = [demoData objectAtIndex:row];
+        [cell setContent:news];
+
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        return 100;
+    } else
     return 80;
 }
 @end

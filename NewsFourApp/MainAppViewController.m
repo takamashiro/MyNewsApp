@@ -118,8 +118,9 @@
     float btnW = 30;
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:CGRectMake(_topNaviV.frame.size.width - btnW, 0, btnW, MENU_HEIGHT)];
-    [btn setBackgroundColor:[UIColor redColor]];
-    [btn setTitle:@"+" forState:UIControlStateNormal];
+    //[btn setBackgroundColor:[UIColor whiteColor]];
+    [btn setBackgroundColor:RGBA(236.f, 236.f, 236.f, 1)];
+    [btn setTitle:@"🔽" forState:UIControlStateNormal];
     [_topNaviV addSubview:btn];
     [btn addTarget:self action:@selector(showSelectView:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -163,7 +164,7 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(scrollV.frame.size.width * i, 0, scrollV.frame.size.width, scrollV.frame.size.height)];
         view.tag = i + 1;
         view.userInteractionEnabled = YES;
-        [view setBackgroundColor:[QHCommonUtil getRandomColor]];
+//        [view setBackgroundColor:[QHCommonUtil getRandomColor]]; //测试背景
 //        
 //        UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] init];
 //        singleTapRecognizer.numberOfTapsRequired = 1;
@@ -175,12 +176,9 @@
 //        tableVC.delegate = self;
 //        tableVC.dataSource = self;
        
-        //[view addSubview:tableVC];
+      
         self.newlist = [[NewsListViewView alloc]init];
-        //self.newlist.tableViewList = [[UITableView alloc]init];
-  
         [self addChildViewController:self.newlist];
-
         [view addSubview:self.newlist.view];
         self.newlist.tableViewList.frame = view.bounds;
         self.newlist.tableViewList.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -191,14 +189,7 @@
 }
 
 
-//- (void)initPageView:(UIView *)view
-//{
-//    tableVC = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,320,480)];
-//    tableVC.delegate = self;
-//    tableVC.dataSource = self;
-//    [view addSubview:tableVC];
-//    
-//}
+
 
 - (void)changeView:(float)x
 {
@@ -224,6 +215,7 @@
     float value2 = [QHCommonUtil lerp:percent min:MIN_MENU_FONT max:MAX_MENU_FONT];
     btn2.titleLabel.font = [UIFont systemFontOfSize:value2];
     [self changeColorForButton:btn2 red:percent];
+    
 }
 
 - (void)changeColorForButton:(UIButton *)btn red:(float)nRedPercent
